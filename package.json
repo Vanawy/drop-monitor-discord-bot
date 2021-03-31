@@ -1,6 +1,6 @@
 {
   "name": "drop-monitor-discord-bot",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Get notifications about streams with 'Drops Enabled' in discord",
   "main": "index.js",
   "scripts": {
