@@ -1,0 +1,33 @@
+{
+  "name": "drop-monitor-discord-bot",
+  "version": "0.1.0",
+  "description": "Get notifications about streams with 'Drops Enabled' in discord",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vanawy/drop-monitor-discord-bot.git"
+  },
+  "keywords": [
+    "discord-bot",
+    "twitch",
+    "discord",
+    "twitch-drops"
+  ],
+  "author": "vanawy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vanawy/drop-monitor-discord-bot/issues"
+  },
+  "homepage": "https://github.com/Vanawy/drop-monitor-discord-bot#readme",
+  "dependencies": {
+    "@keyv/redis": "^2.1.2",
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "drop-monitor": "^2.0.1",
+    "keyv": "^4.0.3"
+  }
+}
