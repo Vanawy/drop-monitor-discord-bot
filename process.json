@@ -1,0 +1,8 @@
+{
+    "script": "node index.js",
+    "watch": true,
+    "watch_options": {
+        "followSymlinks": false
+    },
+    "name": "rl-drops-bot"
+}
