@@ -3,7 +3,8 @@ const Keyv = require('keyv');
 const Discord = require("discord.js");
 const { DropMonitor } = require("drop-monitor");
 
-const interval = process.env.INTERVAL || 60; // in seconds
+ // in seconds
+const interval = Number.isInteger(process.env.INTERVAL) ? process.env.INTERVAL : 60;
 const keyv_namespace = process.env.KEYV_NAMESPACE || 'rl_drops';
 const game_name = process.env.GAME_NAME || 'Don\'t Starve Together';
 
@@ -63,6 +64,7 @@ bot.login(process.env.DISCORD_BOT_TOKEN)
 })
 .catch(e => console.error(e));
 
+console.log(`checking for new stream every ${interval} seconds`);
 main();
 setInterval(main, interval * 1000);
 
