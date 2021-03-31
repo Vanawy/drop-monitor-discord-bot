@@ -8,7 +8,7 @@ const keyv_namespace = process.env.KEYV_NAMESPACE || 'rl_drops';
 const game_name = process.env.GAME_NAME || 'Don\'t Starve Together';
 
 const change_bot_channel_permission = 'ADMINISTRATOR';
-const conncetion_string = 'redis://localhost:6379';
+const conncetion_string = process.env.REDIS_AUTH || 'redis://localhost:6379';
 
 const channelStore = new Keyv(conncetion_string, {
     namespace: keyv_namespace,
