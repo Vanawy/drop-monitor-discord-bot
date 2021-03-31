@@ -10,20 +10,25 @@ const game_name = process.env.GAME_NAME || 'Don\'t Starve Together';
 const change_bot_channel_permission = 'ADMINISTRATOR';
 const conncetion_string = process.env.REDIS_AUTH || 'redis://localhost:6379';
 
+
 const channelStore = new Keyv(conncetion_string, {
     namespace: keyv_namespace,
 });
+console.log('channel store connected');
 
 const streamStore = new Keyv(conncetion_string, {
     namespace: `${keyv_namespace}_streams`,
 });
+console.log('stream store connected');
 
 const dropMonitor = new DropMonitor(
     process.env.TWITCH_CLIENT_ID,
     process.env.TWITCH_CLIENT_SECRET
 );
+console.log('drop monitor created');
 
 const bot = new Discord.Client();
+console.log('discord bot created');
 
 bot.on('message', message => {
     if (message.author.bot) return;
@@ -52,7 +57,11 @@ bot.on('message', message => {
     ;
 });
 
-bot.login(process.env.DISCORD_BOT_TOKEN);
+bot.login(process.env.DISCORD_BOT_TOKEN)
+.then(_ => {
+    console.log('bot running');
+})
+.catch(e => console.error(e));
 
 main();
 setInterval(main, interval * 1000);
@@ -90,12 +99,16 @@ async function checkDrops() {
 
 function notifyAboutNewStreams(streams)
 {
-    let title = `There is ${streams.length} new streams with Drops Enabled`;
+    let title = `There is new streams with Drops Enabled`;
 
     description = '';
-    streams.forEach(stream => {
+    for (let stream of streams) {
         description += `https://twitch.tv/${stream.userName} - Viewers: ${stream.viewers}\n`;
-    });
+        if (description.length + 100 > 2000) {
+            description += 'and more...';
+            break;
+        }
+    }
 
     let embed = {
         title,
