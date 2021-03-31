@@ -75,8 +75,6 @@ async function checkDrops() {
         }
         activeStreams.push(stream);
     }
-    newStreams.push(activeStreams[0]);
-
     
     console.log(activeStreams.length, newStreams.length);
     if (newStreams.length == 0) {
