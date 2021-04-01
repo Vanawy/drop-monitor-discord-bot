@@ -14,6 +14,6 @@ Get notifications about streams with 'Drops Enabled' in discord
 1. Run `index.js` (i personally use [pm2](https://pm2.keymetrics.io/))
 
 # Usage 
-1. Add bot to your server
+1. Add bot to your server ('Send Message', 'Embed Links', 'Add Reactions' permissions is required)
 1. Mention @bot in channel where notifications should appear (`ADMINISTRATOR` permission is required for user who wants to set channel)
 1. If all works fine bot will react with check emoji
