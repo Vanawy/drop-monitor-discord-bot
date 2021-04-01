@@ -93,7 +93,7 @@ async function checkDrops() {
     }
 
     activeStreams.forEach(stream => {
-        streamStore.set(stream.userName, true);
+        streamStore.set(stream.userName, true, 300000);
     });
 
     notifyAboutNewStreams(newStreams);
