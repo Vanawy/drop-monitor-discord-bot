@@ -88,14 +88,12 @@ async function checkDrops() {
     }
     
     console.log(activeStreams.length, newStreams.length);
-
-    streamStore.clear();
     if (newStreams.length == 0) {
         return;
     }
 
     activeStreams.forEach(stream => {
-        streamStore.set(stream.userName, true);
+        streamStore.set(stream.userName, true, 300000);
     });
 
     notifyAboutNewStreams(newStreams);
