@@ -76,11 +76,12 @@ async function checkDrops() {
     const streams = await dropMonitor.findStreamsWithDropsEnabled(game_name);
     updateBotStatus(streams.length);
 
+    let oldStreams = await getOldStreams();
     let activeStreams = [];
     let newStreams = [];
     for(let stream of streams) 
     {
-        let wasActive = await isStreamWasActive(stream);
+        let wasActive = (oldStreams.indexOf(stream.userName) !== -1);
         if (wasActive !== true){
             newStreams.push(stream);
         }
@@ -88,15 +89,23 @@ async function checkDrops() {
     }
     
     console.log(activeStreams.length, newStreams.length);
+
+    await setActiveStreams(activeStreams);
+
     if (newStreams.length == 0) {
         return;
     }
-
-    activeStreams.forEach(stream => {
-        streamStore.set(stream.userName, true, 300000);
-    });
-
     notifyAboutNewStreams(newStreams);
+}
+
+async function getOldStreams()
+{
+    return streamStore.get('streams').then(names => names ? names.split(',') : []);
+}
+
+async function setActiveStreams(streams)
+{
+    return streamStore.set('streams', streams.map(s => s.userName).join(','));
 }
 
 function notifyAboutNewStreams(streams)
@@ -151,11 +160,6 @@ function notifyAboutNewStreams(streams)
     }
 
     broadcastMessage('', options);
-}
-
-async function isStreamWasActive(stream)
-{
-    return streamStore.get(stream.userName);
 }
 
 async function broadcastMessage(text = '', options = {}) {
