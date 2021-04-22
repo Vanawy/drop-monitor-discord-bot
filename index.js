@@ -145,12 +145,12 @@ function notifyAboutNewStreams(streams)
 
         ];
         let thumb = stream.thumbnailUrl;
-        thumb = thumb.replace(/\{width\}/, 256);
-        thumb = thumb.replace(/\{height\}/, 144);
+        thumb = thumb.replace(/\{width\}/, 512);
+        thumb = thumb.replace(/\{height\}/, 288);
         embed.thumbnail = {
             url: thumb,
-            width: 256,
-            height: 144,
+            width: 512,
+            height: 288,
         };
     }
 
