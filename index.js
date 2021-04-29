@@ -6,7 +6,7 @@ const { DropMonitor } = require("drop-monitor");
  // in seconds
 const interval = Number.isInteger(process.env.INTERVAL) ? process.env.INTERVAL : 60;
 const keyv_namespace = process.env.KEYV_NAMESPACE || 'rl_drops';
-const game_name = process.env.GAME_NAME || 'Don\'t Starve Together';
+const game_name = process.env.GAME_NAME || 'Rocket League';
 
 const change_bot_channel_permission = 'ADMINISTRATOR';
 const conncetion_string = process.env.REDIS_AUTH || 'redis://localhost:6379';
